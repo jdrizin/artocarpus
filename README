@@ -1,0 +1,6 @@
+This repository contains various bits of code that'll be used in designing
+and using the Zerega Artocarpus database. We'll likely have a mix of shell,
+R, and SQL. Code license hasn't been decided yet, but will likely be an open
+license, probably a BSD
+
+Code mainly copyright Josh Drizin, some Nyree Zerega
