@@ -1,0 +1,6 @@
+#this contains various bits of code i used to create the database
+#language varies and will be mentioned in the comments, but will be
+#either sh or sql
+
+#oneliner from dms to dump csv
+echo 'insert into table (AnnotationID,Annotations) values (' > dump.sql ; cat Annotations.txt | sed 's/\n/\),\(/' >> dump.sql ; echo ')' >> dump.sql
