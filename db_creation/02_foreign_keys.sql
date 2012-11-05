@@ -20,6 +20,9 @@ MODIFY COLUMN ID INT(5) AUTO_INCREMENT;
 ALTER TABLE geneticproject
 ADD fk_genetic_collection_ID INT(5);
 
+UPDATE geneticproject
+SET fk_genetic_collection_ID=GeneticID;
+
 ALTER TABLE geneticproject
 ADD FOREIGN KEY (fk_genetic_collection_ID)
 REFERENCES collectiondata(ID);
@@ -28,6 +31,9 @@ REFERENCES collectiondata(ID);
 ALTER TABLE annotations
 ADD fk_annotations_collection_ID INT(5);
 
+UPDATE annotations
+SET fk_annotations_collection_ID=AnnotationID;
+
 ALTER TABLE annotations
 ADD FOREIGN KEY (fk_annotations_collection_ID)
 REFERENCES collectiondata(ID);
@@ -35,5 +41,4 @@ REFERENCES collectiondata(ID);
 #don't add colby's data yet, as I don't think her IDs match the main database
 #########################################################################################
 #now fill out the foreign key data for annotations and geneticproject
-
 
