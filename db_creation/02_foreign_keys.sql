@@ -2,21 +2,38 @@
 #for now, the database is remaining fairly un-normalized until I get some of the sequence
 #data to start incorporating that into their own tables
 
+#########################################################################################
+# begin altering the tables 
+
 #the main table is collectiondata, the primary key should be ID
 ALTER TABLE collectiondata
-ADD PRIMARY KEY (ID)
-MODIFY COLUMN ID INT AUTO_INCREMENT PRIMARY KEY
-;
+ADD PRIMARY KEY (ID);
+
+#make it increment
+ALTER TABLE collectiondata
+MODIFY COLUMN ID INT(5) AUTO_INCREMENT;
+
+#########################################################################################
+# define and add foreign keys, but don't add data yet
 
 #add the foreign key to the geneticproject table
 ALTER TABLE geneticproject
-ADD FOREIGN KEY (fk_genetic_collection_ID)
-REFERENCES collectiondata(ID)
-;
+ADD fk_genetic_collection_ID INT(5);
 
-#add it to annotations
+ALTER TABLE geneticproject
+ADD FOREIGN KEY (fk_genetic_collection_ID)
+REFERENCES collectiondata(ID);
+
+#add the foreign key to annotations
+ALTER TABLE annotations
+ADD fk_annotations_collection_ID INT(5);
+
 ALTER TABLE annotations
 ADD FOREIGN KEY (fk_annotations_collection_ID)
-REFERENCES collectiondata(ID)
-;
+REFERENCES collectiondata(ID);
+
+#don't add colby's data yet, as I don't think her IDs match the main database
+#########################################################################################
+#now fill out the foreign key data for annotations and geneticproject
+
 
