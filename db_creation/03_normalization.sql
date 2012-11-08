@@ -38,3 +38,20 @@ ALTER TABLE collectiondata
 	DROP Elevation,
 	DROP LatLongEstAccuracy,
 	DROP LatLongEstNotes;
+
+#aw heck, I shouldn't have moved LocationInfo, Habitat, StateDepProv, Country
+ALTER TABLE collectiondata
+	ADD (LocationInfo VARCHAR(5000), Habitat VARCHAR(5000),
+	     StateDepProv VARCHAR(500),Country VARCHAR(500));
+INSERT INTO collectiondata(LocationInfo, Habitat, StateDepProv, Country)
+	SELECT  LocationInfo, Habitat, StateDepProv, Country
+		FROM geospatial;
+
+ALTER TABLE geospatial
+	DROP LocationInfo, 
+	DROP Habitat,
+	DROP StateDepProv,
+	DROP Country,
+	DROP GPS;
+
+#OK, geospatial should be just fine now
