@@ -55,3 +55,5 @@ ALTER TABLE geospatial
 	DROP GPS;
 
 #OK, geospatial should be just fine now
+
+#other things to normalize out: annotation/species synonyms, once that's solved

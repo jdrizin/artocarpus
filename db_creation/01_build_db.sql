@@ -49,3 +49,4 @@ load data local infile '/home/josh/csvs/annotations.txt'
 	into table annotations fields terminated by ',' 
 	enclosed by '"' lines terminated by '\r\n';
 
+
