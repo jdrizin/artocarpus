@@ -5,24 +5,24 @@
 #######################
 
 ID, AnnotationID, GeneticID
-	these fields are ID linking fields. AnnotationID and GeneticID are probably
-	superfluous. Once I confirm that they are, I'll remove them. ID is set up
-	as a Primary Key, is NOT NULL and AUTO_INCREMENT.
+	these fields are ID linking fields. AnnotationID and GeneticID are 
+	probably superfluous. Once I confirm that they are, I'll remove them.
+	ID is set up as a Primary Key, is NOT NULL and AUTO_INCREMENT.
 
 MostRecent[Family,Genus,Species]
-	i'm told that these should be renamed to Accepted or Current, and represent
-	the most current name for that individual. we don't have a history for the 
-	names and why they were changed. If we have this information, I have an idea
-	for a table that might work: a table with ID, Name, Authority, date changed,
-	and reason for changing. When building a table, you'd join using only the
-	newest of each duplicated ID.
+	i'm told that these should be renamed to Accepted or Current, and 
+	represent the most current name for that individual. we don't have a 
+	history for the names and why they were changed. If we have this 
+	information, I have an idea for a table that might work: a table with 
+	ID, Name, Authority, date changed, and reason for changing. When 
+	building a table, you'd join using only the newest of each duplicated
+	 ID.
 
 QuestionedID, MostRecentIDNotes
 	the former is a boolean, the latter notes
 
 Genus, Species, Species Authority, SubspVar, SubspeciesAuthority
-	Not sure. Were these transcribed from vouchers? I think these should be older
-	names, but...
+	Not sure. Were these transcribed from vouchers? I think these should be 	older names, but...
 
 DeterminedBy, HerbariumCollection, Collector, CollectionNumber, CollectionDate
 VoucherLocations
@@ -32,11 +32,11 @@ Vernacular
 	?
 
 Month, Day, Year
-	these are different from CollectionData, and not totally filled out. No idea
-	what these fields are, for now.
+	these are different from CollectionData, and not totally filled out. No 	idea what these fields are, for now.
 
 SheetScanNumber, Image_location
-	i believe these refer to image filenames, but these are not currently accessible
+	i believe these refer to image filenames, but these are not 
+	currently accessible
 
 AccessionNumber
 	the organization's internal accesion information
@@ -45,7 +45,7 @@ PlantDescription, Reproductive, Type, Notes, Project
 	text description of the materials?
 
 LocationInfo, Habitat, StateDepProv, Country
-	these are in the wrong place due to my error, but i'm not sure what they contain.
+	these are in the wrong place due to my error, but i'm not sure what they	contain.
 	i need to put them back, so i'll figure that out with the access db
 
 ##########################
@@ -53,12 +53,11 @@ LocationInfo, Habitat, StateDepProv, Country
 ##########################
 
 AnnotationsID, fk_annotations_collection_ID
-	these two fields should always be the same. I'm not sure if the former is really
-	necessary, but the latter is a foreign key constraint on collection.ID, so you need
-	to use valid collection.ID numbers.
-Annotation
-	I'm not really sure what exactly this represents. It will probably need to be split
-	into a couple fields though.
+	these two fields should always be the same. I'm not sure if the former 
+	is really necessary, but the latter is a foreign key constraint on 
+	collection.ID, so you need to use valid collection.ID numbers.
+
+Annotation I'm not really sure what exactly this represents. It will probably need to be split into a couple fields though.
 
 
 ##########################
