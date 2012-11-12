@@ -16,7 +16,7 @@ MostRecent[Family,Genus,Species]
 	information, I have an idea for a table that might work: a table with 
 	ID, Name, Authority, date changed, and reason for changing. When 
 	building a table, you'd join using only the newest of each duplicated
-	 ID.
+	ID.
 
 QuestionedID, MostRecentIDNotes
 	the former is a boolean, the latter notes
@@ -57,7 +57,9 @@ AnnotationsID, fk_annotations_collection_ID
 	is really necessary, but the latter is a foreign key constraint on 
 	collection.ID, so you need to use valid collection.ID numbers.
 
-Annotation I'm not really sure what exactly this represents. It will probably need to be split into a couple fields though.
+Annotation 
+	I'm not really sure what exactly this represents. It will probably need 
+	to be split into a couple fields though.
 
 
 ##########################
@@ -65,9 +67,10 @@ Annotation I'm not really sure what exactly this represents. It will probably ne
 ##########################
 
 GeneticProjectID, GeneticID, fk_genetic_collection_ID
-	currently, the latter two are the same, and I believe the former is too. I don't know
-	why the GeneticProjectID exists. if we want multiple project support, we might want
-	multiple tables, but it depends on the data.
+	currently, the latter two are the same, and I believe the former is too.
+	I don't know why the GeneticProjectID exists. if we want multiple 
+	project support, we might want multiple tables, but it depends on 
+	the data.
 
 Everything else: extraction-related information
 
@@ -86,6 +89,6 @@ LatLongEstAccuracy, LatLongEstNotes
 ##########################
 # colbydatasummary
 ##########################
-I don't really know what's going on here. The IDs don't match up with the main DB, i don't think,
-and we might just start keeping different projects in different databases, or a student database,
-or something like that.
+I don't really know what's going on here. The IDs don't match up with the main 
+	DB, i don't think, and we might just start keeping different projects 
+	in different databases, or a student database, or something like that.
