@@ -50,4 +50,38 @@ load data local infile '/home/josh/csvs/annotations.txt'
 	into table annotations fields terminated by ',' 
 	enclosed by '"' lines terminated by '\r\n';
 
+#################################################
+#now for some light normalization
+#normalize out the geospatial data
+CREATE TABLE geospatial (geoID INT(6), GPS VARCHAR(5000),
+	Latitude VARCHAR(500),Longitude VARCHAR(500),
+   Elevation VARCHAR(500),LatLongEstAccuracy VARCHAR(500),
+   LatLongEstNotes VARCHAR(500));
+
+#insert the old data
+INSERT INTO geospatial
+	SELECT  ID, GPS, Latitude, Longitude, Elevation, 
+	LatLongEstAccuracy, LatLongEstNotes
+   FROM collectiondata;
+
+ALTER TABLE geospatial
+ADD fk_geospatial_collection_ID INT(6);
+
+UPDATE geospatial
+SET fk_geospatial_collection_ID=geoID;
+
+ALTER TABLE geospatial
+ADD FOREIGN KEY (fk_geospatial_collection_ID)
+REFERENCES collectiondata(ID);
+
+#now, remove that data from collectiondata so it isn't duplicated
+
+#now remove the data from from collectiondata
+ALTER TABLE collectiondata
+DROP GPS,
+DROP Latitude,
+DROP Longitude,
+DROP Elevation,
+DROP LatLongEstAccuracy,
+DROP LatLongEstNotes;
 
