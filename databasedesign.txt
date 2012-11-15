@@ -18,21 +18,27 @@ MostRecent[Family,Genus,Species]
 	building a table, you'd join using only the newest of each duplicated
 	ID.
 
+MostRecentAltID
+   Yet another place for IDs.
+
 QuestionedID, MostRecentIDNotes
 	the former is a boolean, the latter notes
 
 Genus, Species, Species Authority, SubspVar, SubspeciesAuthority
-	Not sure. Were these transcribed from vouchers? I think these should be 	older names, but...
+	Not sure. Were these transcribed from vouchers? They seem to mainly match
+   MostRecent*. I might normalize this out 
 
 DeterminedBy, HerbariumCollection, Collector, CollectionNumber, CollectionDate
 VoucherLocations
 	this is all herbarium voucher information, or material vouchers.
 
 Vernacular
-	?
+	This is generally a local name or 
 
 Month, Day, Year
-	these are different from CollectionData, and not totally filled out. No 	idea what these fields are, for now.
+	these are different from CollectionData, and not totally filled out. Looks
+   like a failed attempt to extract dates. These will be deleted in favor of
+   a rectified date field.
 
 SheetScanNumber, Image_location
 	i believe these refer to image filenames, but these are not 
@@ -58,10 +64,11 @@ AnnotationsID, fk_annotations_collection_ID
 	collection.ID, so you need to use valid collection.ID numbers.
 
 Annotation 
-	I'm not really sure what exactly this represents. It will probably need 
-	to be split into a couple fields though.
+	I'm not really sure what exactly this represents. This is still a mess,
+   but ought to include the latest names for the individuals, if they're
+   differing from MostRecent* and other things. Some of them have material
 
-
+   use information or other, unrelated fields and should be split out
 ##########################
 # geneticproject         #
 ##########################
