@@ -25,7 +25,8 @@ CREATE TABLE collectiondata (ID INT(6),AnnotationID INT(6),GeneticID INT(6),
 	StateDepProv VARCHAR(500),Country VARCHAR(500),GPS VARCHAR(5000),
 	Latitude VARCHAR(500),Longitude VARCHAR(500),Elevation VARCHAR(500),
 	LatLongEstAccuracy VARCHAR(500),LatLongEstNotes VARCHAR(500),
-	Notes VARCHAR(5000),Project VARCHAR(500)); 
+	Notes VARCHAR(5000),Project VARCHAR(500))
+	ENGINE=Innodb; 
 load data local infile '/home/josh/csvs/collectiondata.txt' 
 	into table collectiondata fields terminated by ',' 
 	enclosed by '"' lines terminated by '\r\n';
@@ -33,19 +34,22 @@ load data local infile '/home/josh/csvs/collectiondata.txt'
 CREATE TABLE geneticproject (GeneticProjectID INT(6),GeneticID INT(6),
 	SampleTypeExtractedFrom VARCHAR(500),LeafTakenDNA VARCHAR(500),
 	Extractor VARCHAR(500),ExtractionCode VARCHAR (500),
-	ExtractionDate VARCHAR(500),ExtractionMethod VARCHAR(500));
+	ExtractionDate VARCHAR(500),ExtractionMethod VARCHAR(500))
+	ENGINE=Innodb; 
 load data local infile '/home/josh/csvs/geneticproject.txt' 
 	into table geneticproject fields terminated by ',' 
 	enclosed by '"' lines terminated by '\r\n';
 
 CREATE TABLE colbydatasummary (ID INT (6),Value INT(6), Primer1 INT(6),
 	Blue VARCHAR(30),Primer2 INT(5),Black VARCHAR(30),Primer3 INT(5),
-	Green VARCHAR(30),Primer4 INT(5),AdditionalColor VARCHAR(500));
+	Green VARCHAR(30),Primer4 INT(5),AdditionalColor VARCHAR(500))
+	ENGINE=Innodb; 
 load data local infile '/home/josh/csvs/colbydatasummary.txt' 
 	into table colbydatasummary fields terminated by ',' 
 	enclosed by '"' lines terminated by '\r\n';
 
-CREATE TABLE annotations (AnnotationID INT(6),Annotation VARCHAR(5000));
+CREATE TABLE annotations (AnnotationID INT(6),Annotation VARCHAR(5000))
+	ENGINE=Innodb; 
 load data local infile '/home/josh/csvs/annotations.txt' 
 	into table annotations fields terminated by ',' 
 	enclosed by '"' lines terminated by '\r\n';
@@ -56,7 +60,8 @@ load data local infile '/home/josh/csvs/annotations.txt'
 CREATE TABLE geospatial (geoID INT(6), GPS VARCHAR(5000),
 	Latitude VARCHAR(500),Longitude VARCHAR(500),
    Elevation VARCHAR(500),LatLongEstAccuracy VARCHAR(500),
-   LatLongEstNotes VARCHAR(500));
+   LatLongEstNotes VARCHAR(500))
+	ENGINE=Innodb; 
 
 #insert the old data
 INSERT INTO geospatial

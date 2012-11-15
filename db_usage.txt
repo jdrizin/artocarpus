@@ -1,0 +1,6 @@
+#this file has instructions for how to set up putty and mysql odbc/connector
+#to make access, er, access the remote mysql database.
+
+1) Set up putty
+	
+	
