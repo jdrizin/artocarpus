@@ -32,13 +32,13 @@ DeterminedBy, HerbariumCollection, Collector, CollectionNumber, CollectionDate
 VoucherLocations
 	this is all herbarium voucher information, or material vouchers.
 
-Vernacular
-	This is generally a local name or 
+CollectionDateGood
+	the rectified collection data, in YYYY-MM-DD format. dummy dates ARE used,
+	1111-01-01 is for missing dates, 01 is inserted when data was missing. if
+	you want to know the real date, look at CollectionDate.
 
-Month, Day, Year
-	these are different from CollectionData, and not totally filled out. Looks
-   like a failed attempt to extract dates. These will be deleted in favor of
-   a rectified date field.
+Vernacular
+	This is generally a local name or other type of synonym, but not in latin. 
 
 SheetScanNumber, Image_location
 	i believe these refer to image filenames, but these are not 
@@ -63,10 +63,16 @@ AnnotationsID, fk_annotations_collection_ID
 	is really necessary, but the latter is a foreign key constraint on 
 	collection.ID, so you need to use valid collection.ID numbers.
 
+Genus,species
+	genus and species, where available
+
 Annotation 
-	I'm not really sure what exactly this represents. This is still a mess,
-   but ought to include the latest names for the individuals, if they're
-   differing from MostRecent* and other things. Some of them have material
+	includes information about the naming of that individual. has a few dna
+	entries that are not yet split out
+
+AnnoDate
+	cleaned-up date for annotations, in YYYY-MM-DD. see the other date entry
+	for information about dummy dates
 
    use information or other, unrelated fields and should be split out
 ##########################
