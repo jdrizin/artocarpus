@@ -20,3 +20,9 @@ set t1.CollectionDateGood=t2.CollectionDateGood;
 
 #drop temp_date
 DROP TABLE temp_date;
+
+#drop the extraneous fields in collectiondata
+ALTER TABLE collectiondata
+DROP COLUMN Month,
+DROP COLUMN Day,
+DROP COLUMN Year;
