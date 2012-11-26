@@ -4,16 +4,16 @@
 # collectiondata      #
 #######################
 
-ID, AnnotationID, GeneticID
-	these fields are ID linking fields. AnnotationID and GeneticID are 
-	probably superfluous. Once I confirm that they are, I'll remove them.
+ID 
+	This field is the main field for linking all other records.
 	ID is set up as a Primary Key, is NOT NULL and AUTO_INCREMENT.
 
 MostRecent[Family,Genus,Species]
-	i'm told that these should be renamed to Accepted or Current, and 
-	represent the most current name for that individual. we don't have a 
-	history for the names and why they were changed. If we have this 
-	information, I have an idea for a table that might work: a table with 
+	i'm told that these should be renamed to Accepted or Current
+	These represent the most current name for each individual. The
+	annotations table includes some other information from other sources.
+	
+	I have an idea for a table that would work: a table with 
 	ID, Name, Authority, date changed, and reason for changing. When 
 	building a table, you'd join using only the newest of each duplicated
 	ID.
@@ -22,11 +22,12 @@ MostRecentAltID
    Yet another place for IDs.
 
 QuestionedID, MostRecentIDNotes
-	the former is a boolean, the latter notes
+	the former ought to be a boolean, the latter notes
 
 Genus, Species, Species Authority, SubspVar, SubspeciesAuthority
-	Not sure. Were these transcribed from vouchers? They seem to mainly match
-   MostRecent*. I might normalize this out 
+	these were transcribed from vouchers. They seem to mainly match
+   MostRecent*, aside from spelling issues or questioned IDs in these fields
+   I might normalize this out 
 
 DeterminedBy, HerbariumCollection, Collector, CollectionNumber, CollectionDate
 VoucherLocations
@@ -41,8 +42,9 @@ Vernacular
 	This is generally a local name or other type of synonym, but not in latin. 
 
 SheetScanNumber, Image_location
-	i believe these refer to image filenames, but these are not 
-	currently accessible
+	these refer to image filenames, but need to be normalized out and the
+	fields with commas turned into seperate ones. we can use a one-to-many
+	relationship for a new table
 
 AccessionNumber
 	the organization's internal accesion information
