@@ -90,6 +90,7 @@ DROP Elevation,
 DROP LatLongEstAccuracy,
 DROP LatLongEstNotes;
 
+################################################################################
 #oh, and of course they all need primary keys? according to xataface they
 #should. guess i'll add them.
 
@@ -109,7 +110,11 @@ ALTER TABLE geospatial
 ADD COLUMN geospatialKEY int(6) AUTO_INCREMENT NOT NULL FIRST,
 ADD PRIMARY KEY(geospatialKEY);
 
-
-
+################################################################################
+#ok, finally drop geneticID and annotationID from collectiondata. they're
+#leftovers, anyway
+ALTER TABLE collectiondata
+DROP AnnotationID,
+DROP GeneticID;
 
 
