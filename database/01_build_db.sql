@@ -92,6 +92,24 @@ DROP LatLongEstNotes;
 
 #oh, and of course they all need primary keys? according to xataface they
 #should. guess i'll add them.
+
 ALTER TABLE annotations
 ADD COLUMN annotationKEY int(6) AUTO_INCREMENT NOT NULL FIRST,
 ADD PRIMARY KEY(annotationKEY);
+
+ALTER TABLE colbydatasummary
+ADD COLUMN colbyKEY int(6) AUTO_INCREMENT NOT NULL FIRST,
+ADD PRIMARY KEY(colbyKEY);
+
+ALTER TABLE geneticproject
+ADD COLUMN geneticKEY int(6) AUTO_INCREMENT NOT NULL FIRST,
+ADD PRIMARY KEY(geneticKEY);
+
+ALTER TABLE geospatial 
+ADD COLUMN geospatialKEY int(6) AUTO_INCREMENT NOT NULL FIRST,
+ADD PRIMARY KEY(geospatialKEY);
+
+
+
+
+
