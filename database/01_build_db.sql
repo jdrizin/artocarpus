@@ -90,3 +90,8 @@ DROP Elevation,
 DROP LatLongEstAccuracy,
 DROP LatLongEstNotes;
 
+#oh, and of course they all need primary keys? according to xataface they
+#should. guess i'll add them.
+ALTER TABLE annotations
+ADD COLUMN annotationKEY int(6) AUTO_INCREMENT NOT NULL FIRST,
+ADD PRIMARY KEY(annotationKEY);
