@@ -38,3 +38,27 @@ UPDATE herbarium
 ALTER TABLE herbarium
 	ADD FOREIGN KEY (fk_herbarium_collection_ID)
 	REFERENCES collectiondata(ID);
+
+#now remove the old data from collectiondata
+ALTER TABLE collectiondata
+	DROP COLUMN Genus,
+	DROP COLUMN Species,
+	DROP COLUMN SpeciesAuthority,
+	DROP COLUMN SubspVar,
+	DROP COLUMN SubspeciesAuthority,
+	DROP COLUMN DeterminedBy,
+	DROP COLUMN HerbariumCollection,
+	DROP COLUMN Collector,
+	DROP COLUMN CollectionNumber,
+	DROP COLUMN Vernacular,
+	DROP COLUMN CollectionDate,
+	DROP COLUMN CollectionDateGood,
+	DROP COLUMN VoucherLocations,
+	DROP COLUMN SheetScanNumber,
+	DROP COLUMN AcessionNumber,
+	DROP COLUMN PlantDescription,
+	DROP COLUMN Reproductive,
+	DROP COLUMN Type,
+	DROP COLUMN LocationInfo,
+	DROP COLUMN Habitat,
+	DROP COLUMN Image_location;
