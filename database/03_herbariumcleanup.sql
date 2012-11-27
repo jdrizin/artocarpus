@@ -13,5 +13,5 @@ CREATE TABLE herbarium (herbID INT(6),
    SheetScanNumber VARCHAR(50), AccessionNumber VARCHAR(500),
    PlantDescription VARCHAR(5000), Reproductive VARCHAR(500),
    Type VARCHAR(500), LocationInfo VARCHAR(5000), Habitat VARCHAR(5000),
-   OnLoan VARCHAR(10), DateLoanedOut VARCHAR(15), DateReturned VARCHAR(15),
+   OnLoan VARCHAR(10), DateLoanedOut VARCHAR(15), DateReturned VARCHAR(15))
    ENGINE=Innodb; 
