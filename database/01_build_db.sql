@@ -117,4 +117,3 @@ ALTER TABLE collectiondata
 DROP AnnotationID,
 DROP GeneticID;
 
-
