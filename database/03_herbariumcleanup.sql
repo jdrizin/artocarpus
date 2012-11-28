@@ -62,3 +62,5 @@ ALTER TABLE collectiondata
 	DROP COLUMN LocationInfo,
 	DROP COLUMN Habitat,
 	DROP COLUMN Image_location;
+
+
