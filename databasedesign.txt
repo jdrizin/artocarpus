@@ -19,15 +19,24 @@ MostRecent[Family,Genus,Species]
 	ID.
 
 MostRecentAltID
-   Yet another place for IDs.
+   Generally a local name or a translation of one
 
 QuestionedID, MostRecentIDNotes
-	the former ought to be a boolean, the latter notes
+	the former ought to be a boolean but isn't, the latter notes
+
+StateDepProv, Country
+	location of collection. may be from vouchers, but more useful in this table
+
+Notes, Project
+	additional info, not sure.
+
+##########################
+# herbarium              #
+##########################
 
 Genus, Species, Species Authority, SubspVar, SubspeciesAuthority
 	these were transcribed from vouchers. They seem to mainly match
    MostRecent*, aside from spelling issues or questioned IDs in these fields
-   I might normalize this out 
 
 DeterminedBy, HerbariumCollection, Collector, CollectionNumber, CollectionDate
 VoucherLocations
@@ -49,10 +58,10 @@ SheetScanNumber, Image_location
 AccessionNumber
 	the organization's internal accesion information
 
-PlantDescription, Reproductive, Type, Notes, Project
+PlantDescription, Reproductive, Type, 
 	text description of the materials?
 
-LocationInfo, Habitat, StateDepProv, Country
+LocationInfo, Habitat, 
 	these are in the wrong place due to my error, but i'm not sure what they	contain.
 	i need to put them back, so i'll figure that out with the access db
 
@@ -100,6 +109,17 @@ Latitude, Longitude, Elevation
 
 LatLongEstAccuracy, LatLongEstNotes
 	Where Greg was guessing at the location based on descriptions or island names or locations.
+
+##########################
+# images
+##########################
+
+imageID, fk_images_collection_ID
+	id that links to collection.id
+
+filename
+	simply the number of the scan, though this is bad form, since the actual
+	images are called IMG_####.jpg. we should store the actual filename.
 
 ##########################
 # colbydatasummary
