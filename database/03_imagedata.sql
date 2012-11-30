@@ -7,7 +7,7 @@ CREATE TABLE images (imageID INT(6), filename VARCHAR(500))
 	ENGINE=InnoDB;
 
 #load in data
-LOAD DATA LOCAL INFILE '/home/josh/csvs/imagelocationfixed.csv'
+LOAD DATA LOCAL INFILE '/home/josh/csvs/imagelocationfixed2.csv'
 	INTO TABLE images 
 	FIELDS TERMINATED BY ','
 	LINES TERMINATED BY '\n';
