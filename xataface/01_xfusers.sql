@@ -4,3 +4,7 @@ CREATE TABLE xf_users (
   password VARCHAR(64) NOT NULL,
   PRIMARY KEY (`username`)
 );
+
+ALTER TABLE xf_users
+	ADD role VARCHAR(32) NOT NULL
+	;
