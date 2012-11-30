@@ -39,6 +39,10 @@ ALTER TABLE herbarium
 	ADD FOREIGN KEY (fk_herbarium_collection_ID)
 	REFERENCES collectiondata(ID);
 
+ALTER TABLE herbarium            
+   ADD COLUMN herbKEY int(6) AUTO_INCREMENT NOT NULL FIRST,
+   ADD PRIMARY KEY(herbKEY);
+
 #now remove the old data from collectiondata
 ALTER TABLE collectiondata
 	DROP COLUMN Genus,
