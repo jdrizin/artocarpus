@@ -56,7 +56,7 @@ select ID,MostRecentGenus,MostRecentSpecies,MostRecentAltID
 
 #make a query to write out all the geospatial data so I can fix it... manually
 select * 
-   FROM herbarium
+   FROM geospatial
    INTO OUTFILE '/home/josh/csvs/geospatialfix.csv'
    FIELDS TERMINATED BY ',' 
    ENCLOSED BY '"' 
