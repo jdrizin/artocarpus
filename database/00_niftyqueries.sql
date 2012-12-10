@@ -1,6 +1,6 @@
 #some nifty queries
 
-#select records where MostRecentGenus/Species doesn't match with Genus/Species
+#select records where MostRecentGenus/Species doesnt match with Genus/Species
 select ID,MostRecentGenus,MostRecentSpecies,Genus,Species
 	FROM collectiondata WHERE MostRecentGenus <> Genus 
 	OR MostRecentSpecies <> Species;
@@ -54,3 +54,12 @@ select ID,MostRecentGenus,MostRecentSpecies,MostRecentAltID
    LINES TERMINATED BY '\n'
    ;
 
+#make a query to write out all the geospatial data so I can fix it... manually
+select * 
+   FROM herbarium
+   INTO OUTFILE '/home/josh/csvs/geospatialfix.csv'
+   FIELDS TERMINATED BY ',' 
+   ENCLOSED BY '"' 
+   ESCAPED BY '\\'
+   LINES TERMINATED BY '\n'
+   ;   
