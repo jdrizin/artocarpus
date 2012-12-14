@@ -5,8 +5,8 @@ CREATE TABLE extractions (extractionID INT(6) AUTO_INCREMENT NOT NULL,
                         extractionType VARCHAR(100), extractionDate VARCHAR(15),
                         extractorName VARCHAR(100), nanodropQuant VARCHAR(100),
                         gelRun VARCHAR(2), eGelImageName VARCHAR(100),
-                        notes VARCHAR(500), fk_extraction_collection_ID INT(6)
-                        PRIMARY KEY (extractionID)
+                        notes VARCHAR(500), fk_extractions_collection_ID INT(6),
+                        PRIMARY KEY (extractionID))
         ENGINE=Innodb;
 
 CREATE TABLE sequences (sequenceID INT(6) AUTO_INCREMENT NOT NULL, 
@@ -36,9 +36,9 @@ ADD FOREIGN KEY (fk_extractions_collection_ID)
 REFERENCES collectiondata(ID);
 
 ALTER TABLE sequences
-ADD FOREIGN KEY (fk_sequences_collection_ID)
+ADD FOREIGN KEY (fk_sequences_extractions_ID)
 REFERENCES collectiondata(ID);
 
 ALTER TABLE microsats
-ADD FOREIGN KEY (fk_microsats_collection_ID)
+ADD FOREIGN KEY (fk_microsats_extractions_ID)
 REFERENCES collectiondata(ID);
