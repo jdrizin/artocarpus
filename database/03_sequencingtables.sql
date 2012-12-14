@@ -1,4 +1,4 @@
-# geospatial data was pretty broken, so i ended up fixing it by hand.
+# extraction test table: set up as per evelyn''s email
 #create a new table for this data
 CREATE TABLE extractions (extractionID INT(6) AUTO_INCREMENT NOT NULL,
                         extractionMaterial VARCHAR(250),
