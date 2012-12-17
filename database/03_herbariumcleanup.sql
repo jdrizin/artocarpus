@@ -84,3 +84,13 @@ ALTER TABLE collectiondata
     DROP COLUMN StateDepProv,
     DROP COLUMN Country,
     DROP COLUMN Notes;
+
+#elevation data turns out to be herbarium data, not geospatial. sigh.
+ALTER TABLE herbarium
+    ADD COLUMN Elevation VARCHAR(500);
+
+UPDATE herbarium t2, geospatial t1
+    set t2.Elevation = t1.Elevation;
+
+ALTER TABLE geospatial
+    DROP COLUMN Elevation;
