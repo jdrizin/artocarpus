@@ -4,7 +4,7 @@ CREATE TABLE extractions (extractionID INT(6) AUTO_INCREMENT NOT NULL,
                         extractionMaterial VARCHAR(250),
                         extractionType VARCHAR(100), extractionDate VARCHAR(15),
                         extractorName VARCHAR(100), nanodropQuant VARCHAR(100),
-                        gelRun VARCHAR(2), eGelImageName VARCHAR(100),
+                        gelRun TINYINT, eGelImageName VARCHAR(100),
                         notes VARCHAR(500), fk_extractions_collection_ID INT(6),
                         PRIMARY KEY (extractionID))
         ENGINE=Innodb;
