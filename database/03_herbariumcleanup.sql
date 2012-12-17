@@ -1,5 +1,5 @@
 ###############################################################################
-#looks like I'll be normalizing out the herbarium data, too 
+#looks like I''ll be normalizing out the herbarium data, too 
 
 # begin by building the new table
 CREATE TABLE herbarium (herbID INT(6),
@@ -67,4 +67,20 @@ ALTER TABLE collectiondata
 	DROP COLUMN Habitat,
 	DROP COLUMN Image_location;
 
+#naturally, i missed a few columns. fixed 2012 dec 17
+ALTER TABLE herbarium
+    ADD COLUMN StateDepProv VARCHAR(500), 
+    ADD COLUMN Country VARCHAR(500),
+    ADD COLUMN Notes VARCHAR(5000);
 
+UPDATE herbarium t2, collectiondata t1
+    set t2.StateDepProv = t1.StateDepProv;
+UPDATE herbarium t2, collectiondata t1
+    set t2.Country = t1.Country;
+UPDATE herbarium t2, collectiondata t1
+    set t2.Notes = t1.Notes;
+
+ALTER TABLE collectiondata
+    DROP COLUMN StateDepProv,
+    DROP COLUMN Country,
+    DROP COLUMN Notes;
