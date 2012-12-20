@@ -15,6 +15,21 @@ ALTER TABLE collectiondata
         *move statedep, country, elevation to the right places 
         */
 
+#move things around
+ALTER TABLE herbarium
+    MODIFY COLUMN Elevation VARCHAR(500) AFTER LocationInfo;
+
+ALTER TABLE herbarium
+    MODIFY COLUMN Country VARCHAR(500) AFTER Habitat,
+    MODIFY COLUMN StateDepProv VARCHAR(500) AFTER Habitat;
+
+ALTER TABLE herbarium
+    MODIFY COLUMN fk_herbarium_collection_ID INT(6) AFTER herbKEY;
+
+#remove the extraneous herbID
+ALTER TABLE herbarium
+    DROP COLUMN herbID;
+
 /* images:
         remove extraneous keys
         */
