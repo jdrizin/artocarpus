@@ -49,7 +49,9 @@ ALTER TABLE geospatial
 /* annotations
         *remove extraneous keys
         */
-
+ALTER TABLE annotations
+    MODIFY COLUMN fk_annotations_collection_ID INT(6) AFTER annotationKEY,
+    DROP COLUMN annotationID;
 
 /* genetic project
         *merge with extractions?
