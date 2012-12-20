@@ -33,7 +33,9 @@ ALTER TABLE herbarium
 /* images:
         remove extraneous keys
         */
-
+ALTER TABLE images
+    DROP COLUMN imageID,
+    MODIFY COLUMN fk_images_collection_ID INT(6) AFTER imagesKEY;
 
 /* geospatial:
         *change field descriptors
