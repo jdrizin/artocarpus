@@ -42,7 +42,9 @@ ALTER TABLE images
         *show a pretty php map (as action)
         *use google maps?
         */
-
+ALTER TABLE geospatial
+    MODIFY COLUMN fk_geospatial_collection_ID INT(6) AFTER geospatialKEY,
+    DROP COLUMN geoID;
 
 /* annotations
         *remove extraneous keys
