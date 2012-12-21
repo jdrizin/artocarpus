@@ -56,3 +56,9 @@ CREATE TABLE seedMeasurements (
         seedDiameter DECIMAL(6,2), seedColour INT(3), seedShape INT(3)
         )
     ENGINE=Innodb;
+
+#the csv for the lookup table is "  " delimited, so deal with that in a
+#delegate class with explode() and arrays.
+CREATE TABLE descriptorLookup (fieldName VARCHAR(100), coding VARCHAR(5000))
+    ENGINE=Innodb;
+
