@@ -59,7 +59,9 @@ CREATE TABLE seedMeasurements (
 
 #the csv for the lookup table is "  " delimited, so deal with that in a
 #delegate class with explode() and arrays.
-CREATE TABLE descriptorLookup (fieldName VARCHAR(100), coding VARCHAR(5000))
+CREATE TABLE descriptorLookup (descriptor VARCHAR(100), DNAME VARCHAR(100),
+    DCAT VARCHAR(100), coding VARCHAR(1000)
+    )
     ENGINE=Innodb;
 
 ###############################################################################
