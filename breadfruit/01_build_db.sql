@@ -62,3 +62,45 @@ CREATE TABLE seedMeasurements (
 CREATE TABLE descriptorLookup (fieldName VARCHAR(100), coding VARCHAR(5000))
     ENGINE=Innodb;
 
+###############################################################################
+
+#begin loading in the data from csv files
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/flowers.csv'
+    INTO TABLE flowers
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/flowers.csv'
+    INTO TABLE flowers
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/fruitDescriptors.csv'
+    INTO TABLE fruitDescriptors
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/fruitMeasurements.csv'
+    INTO TABLE fruitMeasurements
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/leafDescriptors.csv'
+    INTO TABLE leafDescriptors
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/leafMeasurements.csv'
+    INTO TABLE leafMeasurements
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/seedMeasurements.csv'
+    INTO TABLE seedMeasurements
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/coding.csv'
+    INTO TABLE descriptorLookup
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
