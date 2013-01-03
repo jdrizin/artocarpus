@@ -65,42 +65,66 @@ CREATE TABLE descriptorLookup (fieldName VARCHAR(100), coding VARCHAR(5000))
 ###############################################################################
 
 #begin loading in the data from csv files
-LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/flowers.csv'
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/flowers.csv'
     INTO TABLE flowers
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
-LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/flowers.csv'
-    INTO TABLE flowers
-    FIELDS TERMINATED BY ','
-    ENCLOSED BY '"' LINES TERMINATED BY '\n';
-
-LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/fruitDescriptors.csv'
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/fruitDescriptors.csv'
     INTO TABLE fruitDescriptors
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
-LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/fruitMeasurements.csv'
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/fruitMeasurements.csv'
     INTO TABLE fruitMeasurements
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
-LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/leafDescriptors.csv'
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/leafDescriptors.csv'
     INTO TABLE leafDescriptors
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
-LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/leafMeasurements.csv'
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/leafMeasurements.csv'
     INTO TABLE leafMeasurements
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
-LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/seedMeasurements.csv'
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/seedMeasurements.csv'
     INTO TABLE seedMeasurements
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
-LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/coding.csv'
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/coding.csv'
     INTO TABLE descriptorLookup
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+#set up primary keys for xataface: just a dummy field that''ll be hidden
+ALTER TABLE flowers
+ADD COLUMN xkey int(6) AUTO_INCREMENT NOT NULL,
+ADD PRIMARY KEY(xkey);
+
+ALTER TABLE fruitDescriptors
+ADD COLUMN xkey int(6) AUTO_INCREMENT NOT NULL,
+ADD PRIMARY KEY(xkey);
+
+ALTER TABLE fruitMeasurements
+ADD COLUMN xkey int(6) AUTO_INCREMENT NOT NULL,
+ADD PRIMARY KEY(xkey);
+
+ALTER TABLE leafDescriptors
+ADD COLUMN xkey int(6) AUTO_INCREMENT NOT NULL,
+ADD PRIMARY KEY(xkey);
+
+ALTER TABLE leafMeasurements
+ADD COLUMN xkey int(6) AUTO_INCREMENT NOT NULL,
+ADD PRIMARY KEY(xkey);
+
+ALTER TABLE seedMeasurements
+ADD COLUMN xkey int(6) AUTO_INCREMENT NOT NULL,
+ADD PRIMARY KEY(xkey);
+
+ALTER TABLE descriptorLookup
+ADD COLUMN xkey int(6) AUTO_INCREMENT NOT NULL,
+ADD PRIMARY KEY(xkey);
