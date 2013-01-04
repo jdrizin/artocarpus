@@ -137,18 +137,40 @@ ADD PRIMARY KEY(xkey);
 
 #add id columns
 ALTER TABLE flowers
-ADD COLUMN xid VARCHAR(100);
+    ADD COLUMN xid VARCHAR(100);
 ALTER TABLE fruitDescriptors
-ADD COLUMN xid VARCHAR(100);
+    ADD COLUMN xid VARCHAR(100);
 ALTER TABLE fruitMeasurements
-ADD COLUMN xid VARCHAR(100);
+    ADD COLUMN xid VARCHAR(100);
 ALTER TABLE leafDescriptors
-ADD COLUMN xid VARCHAR(100);
+    ADD COLUMN xid VARCHAR(100);
 ALTER TABLE leafMeasurements
-ADD COLUMN xid VARCHAR(100);
+    ADD COLUMN xid VARCHAR(100);
 ALTER TABLE seedMeasurements
-ADD COLUMN xid VARCHAR(100);
+    ADD COLUMN xid VARCHAR(100);
 ALTER TABLE descriptorLookup
-ADD COLUMN xid VARCHAR(100);
+    ADD COLUMN xid VARCHAR(100);
 
+UPDATE flowers dest, 
+    (SELECT CONCAT(accession, grid, flowerReplicate) as uid from flowers) src
+    SET dest.xid = src.uid;
+   
+UPDATE fruitDescriptors dest, 
+    (SELECT CONCAT(accession, grid, fruitReplicate) as uid from fruitDescriptors) src
+    SET dest.xid = src.uid;
 
+UPDATE fruitMeasurements dest, 
+    (SELECT CONCAT(accession, grid, flowerReplicate) as uid from fruitMeasurements) src
+    SET dest.xid = src.uid;
+
+UPDATE leafDescriptors dest, 
+    (SELECT CONCAT(accession, grid, flowerReplicate) as uid from leafDescriptors) src
+    SET dest.xid = src.uid;
+
+UPDATE leafMeasurements dest, 
+    (SELECT CONCAT(accession, grid, flowerReplicate) as uid from leafMeasurements) src
+    SET dest.xid = src.uid;
+
+UPDATE seedMeasurements dest, 
+    (SELECT CONCAT(accession, grid, flowerReplicate) as uid from seedMeasurements) src
+    SET dest.xid = src.uid;
