@@ -130,3 +130,25 @@ ADD PRIMARY KEY(xkey);
 ALTER TABLE descriptorLookup
 ADD COLUMN xkey int(6) AUTO_INCREMENT NOT NULL,
 ADD PRIMARY KEY(xkey);
+
+#well, xataface won't put them together with a multiple key, so make a
+#concat'd key for each table. not ideal, but this db will not get updated,
+#so at least it should work.
+
+#add id columns
+ALTER TABLE flowers
+ADD COLUMN xid VARCHAR(100);
+ALTER TABLE fruitDescriptors
+ADD COLUMN xid VARCHAR(100);
+ALTER TABLE fruitMeasurements
+ADD COLUMN xid VARCHAR(100);
+ALTER TABLE leafDescriptors
+ADD COLUMN xid VARCHAR(100);
+ALTER TABLE leafMeasurements
+ADD COLUMN xid VARCHAR(100);
+ALTER TABLE seedMeasurements
+ADD COLUMN xid VARCHAR(100);
+ALTER TABLE descriptorLookup
+ADD COLUMN xid VARCHAR(100);
+
+
