@@ -54,4 +54,8 @@ ALTER TABLE annotations
     DROP COLUMN annotationID;
 
 /* genetic project
-        *merge with extractions?
+        *merge with extractions? */
+ALTER TABLE geneticproject
+    MODIFY COLUMN fk_genetic_collection_ID INT(6) AFTER geneticKEY,
+    DROP COLUMN GeneticProjectID,
+    DROP COLUMN GeneticID;
