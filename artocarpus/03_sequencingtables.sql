@@ -42,3 +42,7 @@ REFERENCES collectiondata(ID);
 ALTER TABLE microsats
 ADD FOREIGN KEY (fk_microsats_extractions_ID)
 REFERENCES collectiondata(ID);
+
+#so i forgot to add, you know, a sequence field.
+ALTER TABLE sequences
+ADD COLUMN sequence VARCHAR(5000);
