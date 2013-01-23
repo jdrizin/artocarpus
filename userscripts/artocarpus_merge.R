@@ -40,6 +40,7 @@ m.collection_sequences <- merge(collection, m.sequences_extractions,
 										  )
 
 #you can add in additional data from tables using the same method, or cut
-#down the dataframes as appropriate for your use. you could probably write
-#out FASTA files too, if linebreaks are stored (otherwise it's kind of a hassle
-#to output 79-character lines, though certainly doable) 
+#down the dataframes as appropriate for your use. you could write out FASTA
+#files too. SeqinR, biomaRt, and Biostrings all have fasta functions. this way,
+#you could concatenate the fields you want for the sequence header and output
+#useful FASTA files easier than trying to do it through the Xataface software.
