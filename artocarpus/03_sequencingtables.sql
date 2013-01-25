@@ -46,3 +46,9 @@ REFERENCES collectiondata(ID);
 #so i forgot to add, you know, a sequence field.
 ALTER TABLE sequences
 ADD COLUMN sequence VARCHAR(5000);
+
+#folks want contigfilename, alignment filename, and rowtraces
+ALTER TABLE sequences
+ADD COLUMN contigFilename VARCHAR(1000),
+ADD COLUMN alignmentFilename VARCHAR(1000),
+ADD COLUMN rowTraces VARCHAR(5000);
