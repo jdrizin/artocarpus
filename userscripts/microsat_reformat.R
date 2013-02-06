@@ -16,20 +16,26 @@ attach(bfmicro) #attach is ugly, but it'll do
 
 dfLen <- length(Taxon) #for the blank df inside the loop
 colLen<- length(cols)
-edf <- NA
+edf <- NA #blank df for rbinding
+bv <-rep("", dfLen) #blank vector for df init
 
 for (i in 1:colLen ){
 	
 	#initialize a dataframe for the internal loop
-	idf <- data.frame(microsat=rep("", dfLen), value=rep("", dfLen),
+	idf <- data.frame(Taxon=bv, ID.number=bv, Ploidy=bv, microsat=bv, value=bv,
 							stringsAsFactors=FALSE)
 	
 	#for loop to make a dataframe
 	for (j in 1:dfLen ){
-		idf[j, 1] <- cols[i] 
-		idf[j, 2] <- get(cols[i])[j]
+		idf[j, ] <- c( as.character(Taxon[j]), as.character(ID.number[j]), Ploidy[j], cols[i], get(cols[i])[j] )
 	}
 	
 edf <- rbind(edf, idf) #bind it together. use it outside the loop.
 }
 
+edf <- edf[-1,] #first line is an NA, strip it out
+
+detach(bfmicro) #detach, since we'll be sharing names across dataframes
+
+#finished transforming the structure of the matrices.
+################################################################################
