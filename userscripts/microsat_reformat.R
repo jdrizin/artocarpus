@@ -5,11 +5,11 @@
 #convert an arbitrary number of locs, as long as they're named *loc*, and turn it
 #into the two-row setup.
 
-bfmicro <- read.csv("userscripts/breadfruit_microsat_testingdata.csv")
+bfmicro <- read.csv("/home/josh/artocarpus/excelFilesForJosh/microsatsnoalleledosage.csv")
 
 cols <- grep("loc", names(bfmicro), value=T) #pull out only the loc*
 
-################################################################################
+#### transform dataframe #######################################################
 # begin attach(bfmicro). 
 
 attach(bfmicro) #attach is ugly, but it'll do
@@ -33,9 +33,10 @@ for (i in 1:colLen ){
 edf <- rbind(edf, idf) #bind it together. use it outside the loop.
 }
 
+
 edf <- edf[-1,] #first line is an NA, strip it out
 
 detach(bfmicro) #detach, since we'll be sharing names across dataframes
 
 #finished transforming the structure of the matrices.
-################################################################################
+###############################################################################
