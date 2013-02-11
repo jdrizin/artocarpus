@@ -28,3 +28,16 @@ basic$date.planted.fix <- as.character(as.Date(basic$date.planted.fix, format="%
 
 #strip out the _ and prepend with i, like the other IDs.
 basic$Genemapper.ID <- paste("i", sub("_", "", basic$Genemapper.ID), sep="")
+
+
+########## other weirdness ############
+
+
+
+########## 'additional data' ############
+addl <- read.csv("/home/josh/artocarpus/excelFilesForJosh/additionaldata.csv")
+breadgrd <- paste(addl$Grd1, addl$Grd2, addl$Grd3, addl$Grd4) #paste it together
+breadgrd <- gsub("[ ]*$", "", breadgrd) #strip trailing whitespace (regex!)
+breadgrd <- gsub(" ", "; ", breadgrd) #change spaces to "; " delimitation: mainly to read
+addl$Grd <- breadgrd
+
