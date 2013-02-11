@@ -6,7 +6,7 @@
 basic <- read.csv("/home/josh/artocarpus/excelFilesForJosh/basicsampledata.csv")
 
 #things that need cleanup: 
-# dates: date.planted (needs manual work?), collected, dna.extraction
+# dates: date.planted (did slight manual edits), collected, dna.extraction
 # genemapperID: XXX_ -> iXXX
 # seeds: clean up responses? and below?
 # seasonality group, fruit nutrient analysis, aflp ajb data, systematic botany
@@ -21,3 +21,10 @@ basic$DNA.Extraction <- gsub("[()]", "", basic$DNA.Extraction)
 #reformat dates with as.Date, which sanely reformats to YYYY-MM-DD by default
 basic$Collected <- as.character(as.Date(basic$Collected, format="%m/%d/%Y"))
 basic$DNA.Extraction <- as.character(as.Date(basic$DNA.Extraction, format="%m/%d/%Y"))
+basic$date.planted.fix <- as.character(as.Date(basic$date.planted.fix, format="%m/%d/%Y"))
+
+
+########## genemapper id fix ##########
+
+#strip out the _ and prepend with i, like the other IDs.
+basic$Genemapper.ID <- paste("i", sub("_", "", basic$Genemapper.ID), sep="")
