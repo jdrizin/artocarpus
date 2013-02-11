@@ -40,3 +40,5 @@ detach(bfmicro) #detach, since we'll be sharing names across dataframes
 
 #finished transforming the structure of the matrices.
 ###############################################################################
+
+write.csv(edf, file="/home/josh/artocarpus/excelFilesForJosh/microsatlist.csv")
