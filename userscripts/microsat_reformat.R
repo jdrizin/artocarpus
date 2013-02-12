@@ -5,7 +5,8 @@
 #convert an arbitrary number of locs, as long as they're named *loc*, and turn it
 #into the two-row setup.
 
-bfmicro <- read.csv("/home/josh/artocarpus/excelFilesForJosh/microsatsnoalleledosage.csv")
+# FIXED this should be using a cleaned-up version of allele dosage, *not* the NO allele dosage
+bfmicro <- read.csv("/home/josh/artocarpus/excelFilesForJosh/microsatsWITHalleledosage.csv")
 
 cols <- grep("loc", names(bfmicro), value=T) #pull out only the loc*
 
