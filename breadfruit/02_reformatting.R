@@ -35,6 +35,8 @@ basic$Genemapper.ID <- paste("i", sub("_", "", basic$Genemapper.ID), sep="")
 
 
 ########## 'additional data' ############
+#don't rerun this! 2013-02-13
+
 addl <- read.csv("/home/josh/artocarpus/excelFilesForJosh/additionaldata.csv")
 breadgrd <- paste(addl$Grd1, addl$Grd2, addl$Grd3, addl$Grd4) #paste it together
 breadgrd <- gsub("[ ]*$", "", breadgrd) #strip trailing whitespace (regex!)
