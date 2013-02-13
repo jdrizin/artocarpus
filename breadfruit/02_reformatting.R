@@ -43,3 +43,13 @@ breadgrd <- gsub("[ ]*$", "", breadgrd) #strip trailing whitespace (regex!)
 breadgrd <- gsub(" ", "; ", breadgrd) #change spaces to "; " for readability
 addl$Grd <- breadgrd
 write.csv(addl, file="/home/josh/artocarpus/excelFilesForJosh/additionaldata.csv")
+
+# found something new to fix: NTBG Accession number. it needs a period before the last three characters.
+addl <- read.csv("/home/josh/artocarpus/excelFilesForJosh/additionaldata.csv")
+attach(addl)
+# split and repaste the string with the period delimiter. don't rerun this either.
+addl$NTBG.Acc <- paste(substr( NTBG.Acc, 1, nchar(NTBG.Acc)-3 ), 
+		substr( NTBG.Acc, nchar(NTBG.Acc)-2, nchar(NTBG.Acc) ),
+		sep=".")
+detach(addl)
+write.csv(addl, file="/home/josh/artocarpus/excelFilesForJosh/additionaldata.csv")
