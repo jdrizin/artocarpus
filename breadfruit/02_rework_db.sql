@@ -27,7 +27,8 @@ CREATE TABLE microsats (fk_microsats_extractions_ID INT(6),
 /* we also want images and herbarium fileIDs. what specifically? */
 
 /* start building the tables for excel files for josh */
-CREATE TABLE basicsample ( siteCode VARCHAR(10), accessionPrefix VARCHAR(10),
+CREATE TABLE basicsample ( basicKEY INT(6) AUTO_INCREMENT NOT NULL,
+            siteCode VARCHAR(10), accessionPrefix VARCHAR(10),
             accessionNumber VARCHAR(15), DRdupAtHilo VARCHAR(30),
             NTBGGarden VARCHAR(30), GRIDLocation VARCHAR(30), 
             NTBGSourceTree VARCHAR(30), comments VARCHAR(200),
@@ -43,15 +44,22 @@ CREATE TABLE basicsample ( siteCode VARCHAR(10), accessionPrefix VARCHAR(10),
             ploidy INT(4), seeds VARCHAR(10),
             seasonalityGroup INT(3), fruitNutrientAnalysis INT(1),
             isozyme VARCHAR( FIXME ), AFLPAJBdata INT(1),
-            systematicBotany INT(1)
+            systematicBotany INT(1),
+            PRIMARY KEY (addlKEY)
         )
         ENGINE=Innodb;
 
-CREATE TABLE addldata ( species VARCHAR(25), NTBGAcc VARCHAR(25),
-            mainGrd VARCHAR(25), altGrd VARCHAR(50)
+CREATE TABLE addldata ( addlKEY INT(6) AUTO_INCREMENT NOT NULL, 
+            species VARCHAR(25), 
+            NTBGAcc VARCHAR(25),
+            mainGrd VARCHAR(25), altGrd VARCHAR(50),
+            PRIMARY KEY (addlKEY)
         )
         ENGINE=Innodb;
 
-CREATE TABLE microsatlist ( taxon VARCHAR(100), ID VARCHAR(5),
-            ploidy INT(3), microsat VARCHAR(15), value VARCHAR(50) )
+CREATE TABLE microsatlist ( microsatlistKEY INT(6) AUTO_INCREMENT NOT NULL,
+            taxon VARCHAR(100), genemapperID VARCHAR(5),
+            ploidy INT(3), microsat VARCHAR(15), value VARCHAR(50),
+            PRIMARY KEY (microsatlistKEY)
+        )
         ENGINE=Innodb;
