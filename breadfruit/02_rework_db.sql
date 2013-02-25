@@ -49,6 +49,7 @@ CREATE TABLE basicsample ( basicKEY INT(6) AUTO_INCREMENT NOT NULL,
         )
         ENGINE=Innodb;
 
+#added to the db: 2013-02-20
 CREATE TABLE addldata ( addlKEY INT(6) AUTO_INCREMENT NOT NULL, 
             species VARCHAR(25), 
             NTBGAcc VARCHAR(25),
@@ -57,9 +58,17 @@ CREATE TABLE addldata ( addlKEY INT(6) AUTO_INCREMENT NOT NULL,
         )
         ENGINE=Innodb;
 
+#added to the db: 2013-02-20
 CREATE TABLE microsatlist ( microsatlistKEY INT(6) AUTO_INCREMENT NOT NULL,
             taxon VARCHAR(100), genemapperID VARCHAR(5),
             ploidy INT(3), microsat VARCHAR(15), value VARCHAR(50),
             PRIMARY KEY (microsatlistKEY)
         )
         ENGINE=Innodb;
+
+# now load in the data
+load data local infile '/home/josh/csvs/excelFilesForJosh/additionaldata.csv'
+    INTO TABLE addldata
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"'
+    LINES TERMINATED BY '\r\n';
