@@ -2,16 +2,16 @@
 #push some other changes...
 
 CREATE TABLE sample ( 
-Sample VARCHAR(12) NOT NULL,
+Sample VARCHAR(12) NOT NULL, PRIMARY KEY(Sample),
 SampleNumber INT(5),
-TreeTag INT(4),
+TreeTag INT(5),
 Date VARCHAR(15),
 Village VARCHAR(100),
 District VARCHAR(100),
 Owner VARCHAR(100),
-DBHcm #this is a decimal
-ApproxAge INT(4),
-YearsFruiting INT(4),
+DBHcm VARCHAR(30), 
+ApproxAge INT(5),
+YearsFruiting INT(5),
 Intention VARCHAR(50),
 SeedOrSapling VARCHAR(50),
 SeedSource VARCHAR(50),
@@ -33,9 +33,9 @@ OtherTreeCharacteristics VARCHAR(500),
 Notes VARCHAR(5000),
 Card VARCHAR(30),
 Video VARCHAR(30),
-SizeClass
-AgeClass
-ApproxAge
+SizeClass INT(5),
+AgeClass INT(5),
+ApproxAge INT(5),
 SeedOrSapling VARCHAR(30)
 )
 Engine=InnoDB;
