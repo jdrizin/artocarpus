@@ -40,3 +40,27 @@ SeedOrSapling VARCHAR(30)
 )
 Engine=InnoDB;
 
+LOAD DATA LOCAL INFILE '/home/josh/csvs/jackfruit/otherdata.csv' #?
+	INTO TABLE sample
+	FIELDS TERMINATED BY ','
+	ENCLOSED BY '"'
+	TERMINATED BY '\r\n';
+
+
+CREATE TABLE microsats (
+microsatKEY INT(6) AUTO INCREMENT NOT NULL, PRIMARY KEY (microsatKEY),
+fk_microsats_sample_sample VARCHAR(12),
+microsat VARCHAR(12),
+value VARCHAR(12)
+)
+Engine=InnoDB;
+
+ALTER TABLE microsats
+	ADD FOREIGN KEY(fk_microsats_sample_sample)
+	REFERENCES sample(Sample);
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/jackfruit/microsat-reformatted.csv'
+	INTO TABLE microsats
+	FIELDS TERMINATED BY ','
+	ENCLOSED BY '"'
+	TERMINATED BY '\r\n';
