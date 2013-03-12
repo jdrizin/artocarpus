@@ -10,7 +10,6 @@ Village VARCHAR(100),
 District VARCHAR(100),
 Owner VARCHAR(100),
 DBHcm VARCHAR(30), 
-ApproxAge INT(5),
 YearsFruiting INT(5),
 Intention VARCHAR(50),
 SeedOrSapling VARCHAR(50),
@@ -35,20 +34,17 @@ Card VARCHAR(30),
 Video VARCHAR(30),
 SizeClass INT(5),
 AgeClass INT(5),
-ApproxAge INT(5),
-SeedOrSapling VARCHAR(30)
+ApproxAge INT(5)
 )
 Engine=InnoDB;
 
-LOAD DATA LOCAL INFILE '/home/josh/csvs/jackfruit/otherdata.csv' #?
+LOAD DATA LOCAL INFILE '/home/josh/csvs/jackfruit/otherdata.csv'
 	INTO TABLE sample
 	FIELDS TERMINATED BY ','
-	ENCLOSED BY '"'
-	TERMINATED BY '\r\n';
-
+	ENCLOSED BY '"';
 
 CREATE TABLE microsats (
-microsatKEY INT(6) AUTO INCREMENT NOT NULL, PRIMARY KEY (microsatKEY),
+microsatKEY INT(6) AUTO_INCREMENT NOT NULL, PRIMARY KEY(microsatKEY),
 fk_microsats_sample_sample VARCHAR(12),
 microsat VARCHAR(12),
 value VARCHAR(12)
@@ -62,5 +58,4 @@ ALTER TABLE microsats
 LOAD DATA LOCAL INFILE '/home/josh/csvs/jackfruit/microsat-reformatted.csv'
 	INTO TABLE microsats
 	FIELDS TERMINATED BY ','
-	ENCLOSED BY '"'
-	TERMINATED BY '\r\n';
+	ENCLOSED BY '"';
