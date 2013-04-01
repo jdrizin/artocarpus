@@ -26,8 +26,9 @@ CREATE TABLE microsats (fk_microsats_extractions_ID INT(6),
 
 /* we also want images and herbarium fileIDs. what specifically? */
 
-/* start building the tables for excel files for josh */
-CREATE TABLE basicsample ( basicKEY INT(6) AUTO_INCREMENT NOT NULL,
+/* start building the tables for excel files for josh 
+don't auto_increment yet, it makes it harder to import*/
+CREATE TABLE basicsample ( basicKEY INT(6) NOT NULL,
             siteCode VARCHAR(10), 
             accessionPrefix VARCHAR(10),
             accessionNumber VARCHAR(15), 
@@ -50,7 +51,8 @@ CREATE TABLE basicsample ( basicKEY INT(6) AUTO_INCREMENT NOT NULL,
             SSRSamplesCollected VARCHAR(10), 
             genemapperID VARCHAR(10),
             microplateWellNum VARCHAR(5), 
-            plateNumSample VARCHAR(5), 
+            plateNum VARCHAR(5), 
+            Sample VARCHAR(5),
             collectedDate VARCHAR(15), 
             DNAExtractionDate VARCHAR(15),
             ratio260280 VARCHAR(10), 
@@ -84,15 +86,18 @@ CREATE TABLE microsatlist ( microsatlistKEY INT(6) AUTO_INCREMENT NOT NULL,
         ENGINE=Innodb;
 
 # now load in the data
-load data local infile '/home/josh/csvs/excelFilesForJosh/additionaldata.csv'
+load data local infile '/home/josh/csvs/excelFilesForJosh/additionaldata-strip.csv'
     INTO TABLE addldata
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"'
-    LINES TERMINATED BY '\r\n';
+    LINES TERMINATED BY '\n';
 
 # now load in the data
-load data local infile '/home/josh/csvs/excelFilesForJosh/basicsampledata-noindex-strip.csv'
+load data local infile '/home/josh/csvs/excelFilesForJosh/basicsampledata-fix-strip.csv'
     INTO TABLE basicsample
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"'
     LINES TERMINATED BY '\n';
+
+#fix the auto_increment now
+alter table basicsample modify column basicKEY int(6) not null auto_increment;
