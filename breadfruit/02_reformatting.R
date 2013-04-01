@@ -30,7 +30,8 @@ basic$date.planted.fix <- as.character(as.Date(basic$date.planted.fix, format="%
 basic$Genemapper.ID <- paste("i", sub("_", "", basic$Genemapper.ID), sep="")
 
 
-########## other weirdness ############
+########## write it out ############
+write.csv(basic, file="/home/josh/artocarpus/excelFilesForJosh/basicsampledata-fix.csv")
 
 
 
