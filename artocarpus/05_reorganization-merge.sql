@@ -58,10 +58,10 @@ UPDATE collectiondata as c1, herbarium as h1
 	c1.herbHabitat = h1.Habitat ,
 	c1.herbStateDepProv = h1.StateDepProv ,
 	c1.herbCountry = h1.Country ,
-	c1. = h1.OnLoan ,
-	c1. = h1.DateLoanedOut ,
-	c1. = h1.DateReturned ,
-	c1. = h1.Notes ;
+	c1.herbOnLoan = h1.OnLoan ,
+	c1.herbDateLoanedOut = h1.DateLoanedOut ,
+	c1.herbDateReturned = h1.DateReturned ,
+	c1.herbNotes = h1.Notes ;
 
 UPDATE collectiondata as c1, geospatial as g1
 	SET c1.GPS = g1.GPS ,
@@ -69,3 +69,5 @@ UPDATE collectiondata as c1, geospatial as g1
 	c1.Longitude = g1.Longitude ,
 	c1.LatLongEstAccuracy = g1.LatLongEstAccuracy ,
 	c1.LatLongEstNotes = g1.LatLongEstNotes ;
+
+#DROP TABLE herbarium, geospatial;
