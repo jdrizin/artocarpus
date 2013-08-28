@@ -139,7 +139,7 @@ SET c1.LatLongEstNotes = g1.LatLongEstNotes
 
 #DROP TABLE herbarium, geospatial;
 
-CREATE TEMPORARY TABLE fixdata (Elevation VARCHAR(500), gooddate VARCHAR(15));
+CREATE TEMPORARY TABLE fixdata (id INT(6), Elevation VARCHAR(500), gooddate VARCHAR(15));
 
 LOAD DATA INFILE '/home/josh/csvs/fixes/eledate.csv' INTO TABLE fixdata
 	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
@@ -147,3 +147,16 @@ LOAD DATA INFILE '/home/josh/csvs/fixes/eledate.csv' INTO TABLE fixdata
 
 UPDATE collectiondata as c1, fixdata as f1
 	SET c1.herbCollectionDateGood = f1.gooddate
+	WHERE c1.ID = f1.id;
+UPDATE collectiondata as c1, fixdata as f1
+	SET c1.Elevation = f1.Elevation
+	WHERE c1.ID = f1.id;
+
+CREATE TEMPORARY TABLE fixherb (id INT(6), country VARCHAR(500));
+LOAD DATA INFILE '/home/josh/csvs/fixes/fixherbcountry.csv' INTO TABLE fixherb
+	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+	LINES TERMINATED BY '\n';
+
+UPDATE collectiondata as c1, fixherb as f1
+	SET c1.herbCountry = f1.country
+	WHERE c1.ID = f1.id;
