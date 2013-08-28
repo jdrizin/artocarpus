@@ -138,3 +138,12 @@ SET c1.LatLongEstNotes = g1.LatLongEstNotes
  WHERE c1.ID = g1.fk_geospatial_collection_ID;
 
 #DROP TABLE herbarium, geospatial;
+
+CREATE TEMPORARY TABLE fixdata (Elevation VARCHAR(500), gooddate VARCHAR(15));
+
+LOAD DATA INFILE '/home/josh/csvs/fixes/eledate.csv' INTO TABLE fixdata
+	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+	LINES TERMINATED BY '\n';
+
+UPDATE collectiondata as c1, fixdata as f1
+	SET c1.herbCollectionDateGood = f1.gooddate
