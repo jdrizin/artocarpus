@@ -42,8 +42,11 @@ m.collection_sequences <- merge(collection, m.sequences_extractions,
 										  by.y="fk_extractions_collection_ID"
 										  )
 
-# you can add in additional data from tables using the same method, or cut
-# down the dataframes as appropriate for your use. you could write out FASTA
-# files too. SeqinR, biomaRt, and Biostrings all have fasta functions. this way,
-# you could concatenate the fields you want for the sequence header and output
-# useful FASTA files easier than trying to do it through the Xataface software. 
+# from here you can export the CSV file or reorder the columns if you really wanted.
+# now would be a good time to rename them or drop them before exporting.
+
+attach(m.collection_sequences) #attach is ugly, i generally avoid it, but it's fine for this
+trimmed <- data.frame(vectors, from, the, m.collection_sequences, dataframe)
+detach(m.collection_sequences) #detach ASAP
+
+write.csv(trimmed, file="output.csv") #call it what you like, it ends up in your wd from above
