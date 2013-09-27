@@ -35,72 +35,122 @@ CREATE TABLE bread_basicsample ( basicKEY INT(6) NOT NULL,
             isozyme VARCHAR(10), 
             AFLPAJBdata INT(1),
             systematicBotany INT(1),
+            nyreeField VARCHAR(500), FIXME
             PRIMARY KEY (basicKEY)
         )
         ENGINE=Innodb;
 
+/*        #breadmerge fields?
+        scientificName -> species
+        collector -> herbCollector
+        locations get created based on their current data, as per colby's paper
+		accession prefix and number should get merged and used as accession number
+		accession number was put in the db wrong, make it varchar
+         */
+
 #added to the db: 2013-02-20
-CREATE TABLE bread_addldata ( addlKEY INT(6) AUTO_INCREMENT NOT NULL, 
+CREATE TABLE bread_addldata ( 
+			addlKEY INT(6) AUTO_INCREMENT NOT NULL, 
             species VARCHAR(25), 
             NTBGAcc VARCHAR(25),
-            mainGrd VARCHAR(25), altGrd VARCHAR(50),
+            mainGrd VARCHAR(25), 
+            altGrd VARCHAR(50),
             PRIMARY KEY (addlKEY)
         )
         ENGINE=Innodb;
 
 
 CREATE TABLE bread_fruitMeasurements (
-        accession VARCHAR(25), grid VARCHAR(10),
-        variety VARCHAR(500), fruitReplicate INT(4),
+        accession VARCHAR(25), 
+        grid VARCHAR(10),
+        variety VARCHAR(500),
+        fruitReplicate INT(4),
         fruitWeight INT(10), fruitLength DECIMAL(6,2),
-        fruitDiameter DECIMAL(6,2), fruitWidthAtTop DECIMAL(6,2),
-        fruitWidthAtBase DECIMAL(6,2), coreLength DECIMAL(6,2),
-        coreWidth DECIMAL(6,2), xkey int(6) AUTO_INCREMENT NOT NULL
+        fruitDiameter DECIMAL(6,2), 
+        fruitWidthAtTop DECIMAL(6,2),
+        fruitWidthAtBase DECIMAL(6,2), 
+        coreLength DECIMAL(6,2),
+        coreWidth DECIMAL(6,2), 
+        xkey int(6) AUTO_INCREMENT NOT NULL
         )
     ENGINE=Innodb;
 
 CREATE TABLE bread_fruitDescriptors (
-        accession VARCHAR(25), grid VARCHAR(10), variety VARCHAR(100),
-        fruitReplicate INT(3), fruitShape INT(3), skinTexture INT(3),
-        skinColor INT(3), fleshColor INT(3), numberOfSeeds INT(4), 
+        accession VARCHAR(25), 
+        grid VARCHAR(10), 
+        variety VARCHAR(100),
+        fruitReplicate INT(3), 
+        fruitShape INT(3), 
+        skinTexture INT(3),
+        skinColor INT(3), 
+        fleshColor INT(3), 
+        numberOfSeeds INT(4), 
         xkey int(6) AUTO_INCREMENT NOT NULL
         )
     ENGINE=Innodb; 
 
 CREATE TABLE bread_flowers (
-        accession VARCHAR(25), grid VARCHAR(10), variety VARCHAR(100),
-        flowerReplicate INT(3), flowerLength DECIMAL(6,2),
-        flowerDiameter DECIMAL(6,2), xkey int(6) AUTO_INCREMENT NOT NULL
+        accession VARCHAR(25), 
+        grid VARCHAR(10), 
+        variety VARCHAR(100),
+        flowerReplicate INT(3), 
+        flowerLength DECIMAL(6,2),
+        flowerDiameter DECIMAL(6,2), 
+        xkey int(6) AUTO_INCREMENT NOT NULL
         )
     ENGINE=Innodb;
 
 CREATE TABLE bread_leafMeasurements (
-        accession VARCHAR(25), grid VARCHAR(10), variety VARCHAR(100),
-        leafReplicate INT(3), numberOfLobes INT(4),
-        leafLength DECIMAL(6,2), leafWidth DECIMAL(6,2),
-        widthToLengthRatio DECIMAL(3,2), dissectionRatio DECIMAL(6,2),
-        petioleLength DECIMAL(6,2), petioleWidth DECIMAL(6,2), 
+        accession VARCHAR(25), 
+        grid VARCHAR(10), 
+        variety VARCHAR(100),
+        leafReplicate INT(3), 
+        numberOfLobes INT(4),
+        leafLength DECIMAL(6,2), 
+        leafWidth DECIMAL(6,2),
+        widthToLengthRatio DECIMAL(3,2), 
+        dissectionRatio DECIMAL(6,2),
+        petioleLength DECIMAL(6,2), 
+        petioleWidth DECIMAL(6,2), 
         xkey int(6) AUTO_INCREMENT NOT NULL
         )
     ENGINE=Innodb;
 
 CREATE TABLE bread_leafDescriptors (
-        accession VARCHAR(25), grid VARCHAR(10), variety VARCHAR(100),
-        leafReplicate INT(3), base INT(3), apexShape INT(3),
-        margin INT(3), spacing INT(3), bladeColour INT(3),
-        veinColour INT(3), surface INT(3), flexible INT(3), 
-        pubescence INT(3), upperHairAmount INT(3),
-        upperHairDirection INT(3), upperHairLength INT(3),
-        upperHairColor INT(3), lowerHairAmount INT(3),
-        lowerHairDirection INT(3), lowerHairLength INT(3), 
-        lowerHairColor INT(3), xkey int(6) AUTO_INCREMENT NOT NULL
+        accession VARCHAR(25), 
+        grid VARCHAR(10), 
+        variety VARCHAR(100),
+        leafReplicate INT(3), 
+        base INT(3), 
+        apexShape INT(3),
+        margin INT(3), 
+        spacing INT(3), 
+        bladeColour INT(3),
+        veinColour INT(3), 
+        surface INT(3), 
+        flexible INT(3), 
+        pubescence INT(3), 
+        upperHairAmount INT(3),
+        upperHairDirection INT(3), 
+        upperHairLength INT(3),
+        upperHairColor INT(3), 
+        lowerHairAmount INT(3),
+        lowerHairDirection INT(3), 
+        lowerHairLength INT(3), 
+        lowerHairColor INT(3), 
+        xkey int(6) AUTO_INCREMENT NOT NULL
         )
     ENGINE=Innodb;
 
 CREATE TABLE bread_seedMeasurements (
-        accession VARCHAR(25), grid VARCHAR(10), variety VARCHAR(100),
-        seedReplicate INT(3), seedLength DECIMAL(6,2),
-        seedDiameter DECIMAL(6,2), seedColour INT(3), seedShape INT(3), 
+        accession VARCHAR(25), 
+        grid VARCHAR(10), 
+        variety VARCHAR(100),
+        seedReplicate INT(3), 
+        seedLength DECIMAL(6,2),
+        seedDiameter DECIMAL(6,2), 
+        seedColour INT(3), 
+        seedShape INT(3), 
         xkey int(6) AUTO_INCREMENT NOT NULL
         )
     ENGINE=Innodb;
@@ -108,7 +158,9 @@ CREATE TABLE bread_seedMeasurements (
 #the csv for the lookup table is "  " delimited, so deal with that in a
 #delegate class with explode() and arrays.
 CREATE TABLE bread_descriptorLookup (descriptor VARCHAR(100), DNAME VARCHAR(100),
-    DCAT VARCHAR(100), coding VARCHAR(1000), xkey int(6) AUTO_INCREMENT NOT NULL
+    DCAT VARCHAR(100), 
+    coding VARCHAR(1000), 
+    xkey int(6) AUTO_INCREMENT NOT NULL
     )
     ENGINE=Innodb;
 
@@ -148,3 +200,15 @@ AgeClass INT(5),
 ApproxAge INT(5)
 )
 Engine=InnoDB;
+
+/*	jackfruit fiends to be shifted
+	project gets the value "bangladesh jackfruit"
+	species authority is Lam.
+	determined by Colby Witherup
+	drop sample index column?
+	district -> statedepprov
+	herlocationinfo -> Village
+	country banglasdesh except jm = jamaica
+	latlong -> fix the names
+	microsats s/X/MAA/g 
+	*/
