@@ -30,7 +30,7 @@ leafDesc <- merge(leafDesc, access, by.x="ACCESSION", by.y="number")
 leafMeas <- merge(leafMeas, access, by.x="ACCESSION", by.y="number")
 seedMeas <- merge(seedMeas, access, by.x="NTBG.accession", by.y="number")
 
-#uh oh, issues?
+#uh oh, issues? need to wait on nyree for solving the issues before moving forward
 addl$NTBGAcc [!(addl$NTBGAcc %in% access$number) ]
 flowers$ACCESSION[!(flowers$ACCESSION %in% access$number) ]
 fruitDesc$ACCESSION[!(fruitDesc$ACCESSION %in% access$number) ]
