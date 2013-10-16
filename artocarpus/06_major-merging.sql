@@ -35,7 +35,6 @@ CREATE TABLE bread_basicsample ( basicKEY INT(6) NOT NULL,
             isozyme VARCHAR(10), 
             AFLPAJBdata INT(1),
             systematicBotany INT(1),
-            nyreeField VARCHAR(500), FIXME
             PRIMARY KEY (basicKEY)
         )
         ENGINE=Innodb;
@@ -49,8 +48,7 @@ CREATE TABLE bread_basicsample ( basicKEY INT(6) NOT NULL,
          */
 
 #added to the db: 2013-02-20
-CREATE TABLE bread_addldata ( 
-			addlKEY INT(6) AUTO_INCREMENT NOT NULL, 
+CREATE TABLE bread_addldata ( addlKEY INT(6) AUTO_INCREMENT NOT NULL, 
             species VARCHAR(25), 
             NTBGAcc VARCHAR(25),
             mainGrd VARCHAR(25), 
@@ -60,8 +58,7 @@ CREATE TABLE bread_addldata (
         ENGINE=Innodb;
 
 
-CREATE TABLE bread_fruitMeasurements (
-        accession VARCHAR(25), 
+CREATE TABLE bread_fruitMeasurements ( accession VARCHAR(25), 
         grid VARCHAR(10),
         variety VARCHAR(500),
         fruitReplicate INT(4),
@@ -71,12 +68,12 @@ CREATE TABLE bread_fruitMeasurements (
         fruitWidthAtBase DECIMAL(6,2), 
         coreLength DECIMAL(6,2),
         coreWidth DECIMAL(6,2), 
-        xkey int(6) AUTO_INCREMENT NOT NULL
+        xkey int(6) AUTO_INCREMENT NOT NULL,
+        PRIMARY KEY(xkey)
         )
     ENGINE=Innodb;
 
-CREATE TABLE bread_fruitDescriptors (
-        accession VARCHAR(25), 
+CREATE TABLE bread_fruitDescriptors (accession VARCHAR(25), 
         grid VARCHAR(10), 
         variety VARCHAR(100),
         fruitReplicate INT(3), 
@@ -85,23 +82,23 @@ CREATE TABLE bread_fruitDescriptors (
         skinColor INT(3), 
         fleshColor INT(3), 
         numberOfSeeds INT(4), 
-        xkey int(6) AUTO_INCREMENT NOT NULL
+        xkey int(6) AUTO_INCREMENT NOT NULL,
+        PRIMARY KEY(xkey)
         )
     ENGINE=Innodb; 
 
-CREATE TABLE bread_flowers (
-        accession VARCHAR(25), 
+CREATE TABLE bread_flowers (accession VARCHAR(25), 
         grid VARCHAR(10), 
         variety VARCHAR(100),
         flowerReplicate INT(3), 
         flowerLength DECIMAL(6,2),
         flowerDiameter DECIMAL(6,2), 
-        xkey int(6) AUTO_INCREMENT NOT NULL
+        xkey int(6) AUTO_INCREMENT NOT NULL,
+        PRIMARY KEY(xkey)
         )
     ENGINE=Innodb;
 
-CREATE TABLE bread_leafMeasurements (
-        accession VARCHAR(25), 
+CREATE TABLE bread_leafMeasurements (accession VARCHAR(25), 
         grid VARCHAR(10), 
         variety VARCHAR(100),
         leafReplicate INT(3), 
@@ -112,12 +109,12 @@ CREATE TABLE bread_leafMeasurements (
         dissectionRatio DECIMAL(6,2),
         petioleLength DECIMAL(6,2), 
         petioleWidth DECIMAL(6,2), 
-        xkey int(6) AUTO_INCREMENT NOT NULL
+        xkey int(6) AUTO_INCREMENT NOT NULL,
+        PRIMARY KEY(xkey)
         )
     ENGINE=Innodb;
 
-CREATE TABLE bread_leafDescriptors (
-        accession VARCHAR(25), 
+CREATE TABLE bread_leafDescriptors (accession VARCHAR(25), 
         grid VARCHAR(10), 
         variety VARCHAR(100),
         leafReplicate INT(3), 
@@ -138,12 +135,12 @@ CREATE TABLE bread_leafDescriptors (
         lowerHairDirection INT(3), 
         lowerHairLength INT(3), 
         lowerHairColor INT(3), 
-        xkey int(6) AUTO_INCREMENT NOT NULL
+        xkey int(6) AUTO_INCREMENT NOT NULL,
+        PRIMARY KEY(xkey)
         )
     ENGINE=Innodb;
 
-CREATE TABLE bread_seedMeasurements (
-        accession VARCHAR(25), 
+CREATE TABLE bread_seedMeasurements ( accession VARCHAR(25), 
         grid VARCHAR(10), 
         variety VARCHAR(100),
         seedReplicate INT(3), 
@@ -151,7 +148,8 @@ CREATE TABLE bread_seedMeasurements (
         seedDiameter DECIMAL(6,2), 
         seedColour INT(3), 
         seedShape INT(3), 
-        xkey int(6) AUTO_INCREMENT NOT NULL
+        xkey int(6) AUTO_INCREMENT NOT NULL,
+        PRIMARY KEY(xkey)
         )
     ENGINE=Innodb;
 
@@ -160,17 +158,54 @@ CREATE TABLE bread_seedMeasurements (
 CREATE TABLE bread_descriptorLookup (descriptor VARCHAR(100), DNAME VARCHAR(100),
     DCAT VARCHAR(100), 
     coding VARCHAR(1000), 
-    xkey int(6) AUTO_INCREMENT NOT NULL
+    xkey int(6) AUTO_INCREMENT NOT NULL,
+    PRIMARY KEY(xkey)
     )
     ENGINE=Innodb;
 
-CREATE TABLE jack_sample ( 
-Sample VARCHAR(12) NOT NULL, PRIMARY KEY(Sample),
-SampleNumber INT(5),
+#begin loading in the data from csv files
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/flowers.csv'
+    INTO TABLE flowers
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/fruitDescriptors.csv'
+    INTO TABLE fruitDescriptors
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/fruitMeasurements.csv'
+    INTO TABLE fruitMeasurements
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/leafDescriptors.csv'
+    INTO TABLE leafDescriptors
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/leafMeasurements.csv'
+    INTO TABLE leafMeasurements
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/seedMeasurements.csv'
+    INTO TABLE seedMeasurements
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE '/home/josh/csvs/breadfruit/stripped/coding.csv'
+    INTO TABLE descriptorLookup
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+
+
+
+
+CREATE TABLE jack_sample ( sample VARCHAR(12) NOT NULL, PRIMARY KEY(Sample),
 TreeTag INT(5),
-Date VARCHAR(15),
 Village VARCHAR(100),
-District VARCHAR(100),
 Owner VARCHAR(100),
 DBHcm VARCHAR(30), 
 YearsFruiting INT(5),
@@ -187,9 +222,6 @@ FruitSize VARCHAR(30),
 FruitQuality VARCHAR(30),
 AteFruit VARCHAR(30),
 RotPresent VARCHAR(30),
-GPSLat VARCHAR(30),
-GPSLong VARCHAR(30),
-AccuracyMeters INT(5),
 OtherFruitCharacteristics VARCHAR(500),
 OtherTreeCharacteristics VARCHAR(500),
 Notes VARCHAR(5000),
@@ -197,18 +229,13 @@ Card VARCHAR(30),
 Video VARCHAR(30),
 SizeClass INT(5),
 AgeClass INT(5),
-ApproxAge INT(5)
+ApproxAge INT(5),
+haveVoucher INT(2)
 )
 Engine=InnoDB;
 
-/*	jackfruit fiends to be shifted
-	project gets the value "bangladesh jackfruit"
-	species authority is Lam.
-	determined by Colby Witherup
-	drop sample index column?
-	district -> statedepprov
-	herlocationinfo -> Village
-	country banglasdesh except jm = jamaica
-	latlong -> fix the names
-	microsats s/X/MAA/g 
+LOAD DATA INFILE '/home/josh/csvs/october/jackfruit_overflow-stripped.csv' INTO TABLE jack_sample
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+/*	still need to deal with jackfruit microsats
 	*/

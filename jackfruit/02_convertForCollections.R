@@ -11,6 +11,11 @@ names(jack)
 
 attach(jack) # i still don't like attach(), but it's useful
 
-#things to fix: date, the N and E in the latlong
+Date <- as.character(strptime(Date, format="%d-%b-%Y")) #reformat dates first
 
-coll <- data.frame(Sample, Family, Genus, Species, Authority, determinedBy, Date, District, Country, notes, GPSLat, GPSLong, AccuracyMeter)
+coll <- data.frame(Sample, Family, Genus, Species, Authority, determinedBy, Date, District, Country, notes, GPSLat, GPSLong, AccuracyMeters)
+
+overflow <- subset(jack, select=-c(Family, Genus, Species, Authority, determinedBy, Date, District, Country, notes, GPSLat, GPSLong, AccuracyMeters)) #drop the above, except sample
+
+write.csv(coll, file="jackfruit_collection.csv")
+write.csv(overflow, file="jackfruit_overflow.csv")
