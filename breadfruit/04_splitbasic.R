@@ -10,6 +10,12 @@ sort(accessionNumber[duplicated(accessionNumber)])
 #let's just split the genetic junk out into yet another table. what's 1 more 
 #when you already have 8?
 
-bread.collect
+# data differs on dupes in GRIDlocation, genemapperid, microplatewellnum, 
+# collecteddate, dnaextractiondate, ratio260280, dnaconcugml,
+
+bread.collect <- data.frame(accessionNumber, collector, city?state?)
 bread.overflow
-bread.genes
+bread.genes <- data.frame(accessionNumber, SSRSamplesCollected, genemapperID, 
+								  microplateWellNum, plateNum, Sample, collectedDate, 
+								  DNAExtractionDate, ratio260280, DNAConcugml, ploidy, 
+								  )
