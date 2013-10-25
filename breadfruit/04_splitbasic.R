@@ -35,18 +35,3 @@ merge(leafDesc, accessions, by.x="ACCESSION", by.y="number", all.x=TRUE)
 merge(leafMeas, accessions, by.x="ACCESSION", by.y="number", all.x=TRUE)
 merge(seedMeas, accessions, by.x="NTBG.accession", by.y="number", all.x=TRUE)
 
-#apparently we might just delete our dupes, which would solve this problem altogether
-
-# data differs on dupes in GRIDlocation, genemapperid, microplatewellnum, 
-# collecteddate, dnaextractiondate, ratio260280, dnaconcugml,
-attach(basic)
-sort(accessionNumber[duplicated(accessionNumber)])
-
-
-bread.collect <- data.frame(accessionNumber, collector, city?state?)
-bread.overflow
-bread.genes <- data.frame(accessionNumber, SSRSamplesCollected, genemapperID, 
-								  microplateWellNum, plateNum, Sample, collectedDate, 
-								  DNAExtractionDate, ratio260280, DNAConcugml, ploidy, 
-								  )
-
